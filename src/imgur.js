@@ -86,6 +86,7 @@
             }.bind(this));
         },
         loading: function () {
+			/*
             var div, img;
 
             div = this.createEls('div', {className: 'loading-modal'});
@@ -93,6 +94,7 @@
 
             div.appendChild(img);
             document.body.appendChild(div);
+			*/
         },
         status: function (el) {
             var div = this.createEls('div', {className: 'status'});
