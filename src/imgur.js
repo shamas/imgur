@@ -59,6 +59,7 @@
                         var response = '';
                         try {
                             response = JSON.parse(this.responseText);
+							//console.log(response);
                         } catch (err) {
                             response = this.responseText;
                         }
@@ -153,6 +154,33 @@
                 this.loading();
             }
             this.createDragZone();
+        },
+		delete: function (hashid, callback) {
+            var xhttp = new XMLHttpRequest();
+
+			if(!hashid) {
+				throw new Error("Image id must not be null for deletion.");
+			}
+			
+            xhttp.open('DELETE', this.endpoint + "/" + hashid, true);
+            xhttp.setRequestHeader('Authorization', 'Client-ID ' + this.clientid);
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4) {
+                    if (this.status >= 200 && this.status < 300) {
+                        var response = '';
+                        try {
+                            response = JSON.parse(this.responseText);
+                        } catch (err) {
+                            response = this.responseText;
+                        }
+                        callback.call(window, response);
+                    } else {
+                        throw new Error(this.status + " - " + this.statusText);
+                    }
+                }
+            };
+            xhttp.send();
+            xhttp = null;
         }
     };
 
