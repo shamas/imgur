@@ -157,7 +157,7 @@
             }
             this.createDragZone();
         },
-		delete: function (hashid, callback) {
+		deletef: function (hashid, callback) {
             var xhttp = new XMLHttpRequest();
 
 			if(!hashid) {
